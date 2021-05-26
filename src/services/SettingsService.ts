@@ -10,31 +10,30 @@ interface ISettingsCreate {
 class SettingsService {
     private settingsRepository: Repository<Setting>;
 
-    constructor(){
+    constructor() {
         this.settingsRepository = getCustomRepository(SettingsRepository);
     }
 
-    async create( { chat, username } : ISettingsCreate ){    
-
+    async create({ chat, username }: ISettingsCreate) {
         const userAlreadyExists = await this.settingsRepository.findOne({
             username,
         });
 
-        if(userAlreadyExists){
-            throw new Error("User already exists!");            
+        if (userAlreadyExists) {
+            throw new Error("User already exists!");
         }
 
         const settings = this.settingsRepository.create({
             chat,
-            username
-        })
+            username,
+        });
 
-        await this.settingsRepository.save(settings); 
+        await this.settingsRepository.save(settings);
 
         return settings;
     }
 
-    async findByUserName(username: string){
+    async findByUsername(username: string) {
         const settings = await this.settingsRepository.findOne({
             username,
         });
@@ -42,16 +41,14 @@ class SettingsService {
         return settings;
     }
 
-    async update(username: string, chat: boolean){
+    async update(username: string, chat: boolean) {
         await this.settingsRepository
-        .createQueryBuilder()
-        .update(Setting)
-        .set({chat})
-        .where("username = : username", {
-            username,
-        })
-        .execute();
+            .createQueryBuilder()
+            .update(Setting)
+            .set({ chat })
+            .where("username = :username", { username })
+            .execute();
     }
 }
 
-export { SettingsService }
+export { SettingsService };

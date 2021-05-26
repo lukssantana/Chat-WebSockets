@@ -5,16 +5,14 @@ import { UsersRepository } from "../repositories/UsersRepository";
 class UsersService {
     private usersRepository: Repository<User>;
 
-    constructor(){
+    constructor() {
         this.usersRepository = getCustomRepository(UsersRepository);
     }
 
-    async create( email: string) {    
-        const userExists = await this.usersRepository.findOne({
-            email
-        });
+    async create(email: string) {
+        const userExists = await this.usersRepository.findOne({ email });
 
-        if(userExists){
+        if (userExists) {
             return userExists;
         }
 
@@ -22,10 +20,16 @@ class UsersService {
             email,
         });
 
-        await this.usersRepository.save(user); 
+        await this.usersRepository.save(user);
+
+        return user;
+    }
+
+    async findByEmail(email: string) {
+        const user = await this.usersRepository.findOne({ email });
 
         return user;
     }
 }
 
-export { UsersService }
+export { UsersService };

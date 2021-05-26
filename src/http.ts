@@ -13,15 +13,19 @@ app.set("views", path.join(__dirname, "..", "public"));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
-app.get("/pages/client", (request,response) => {
-    return response.render("html/client.html");
+app.get("/pages/client", (req, res) => {
+    return res.render("html/client.html");
 });
 
-const http = createServer(app);
-const io = new Server(http);
+app.get("/pages/admin", (req, res) => {
+    return res.render("html/admin.html");
+});
+
+const http = createServer(app); //* criando protocolo http
+const io = new Server(http); //* criando protocolo ws
 
 io.on("connection", (socket: Socket) => {
-    console.log("Connect", socket.id);
+    console.log("Se conectou", socket.id);
 });
 
 app.use(express.json());
