@@ -8,11 +8,6 @@
 
 A **Next Level Week** é um evento da **Rocketseat** de imersão em tecnologia. Onde é uma semana de aulas com conteúdos incríveis e uma comunidade bem massa de se fazer network. Nesse evento há diversas tecnologias, esta por exemplo é a trilha de **NodeJs**.
 
-![Banner](./.github/NLW05_banner.png)
-
-_#juntosparaoproximonivel_
-
-![Spaceship](./.github/NLW05_espaconave.jpg)
 
 ## Proposta do projeto NLW5 NodeJs
 
@@ -53,4 +48,4 @@ No quinto e último dia a gente finalizou a integração do socket, fazendo o fl
 
 Agradecimento à **Rocketseat** 🚀 pelo evento incrível!💜
 
-_Matheus Ishiyama_
+_Lucas Santanna_
